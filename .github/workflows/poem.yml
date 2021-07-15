@@ -2,7 +2,7 @@ name: poem
 
 on:
   schedule:
-    - cron: '30 22 * * *'
+    - cron: '30 6 * * *'
   watch:
     types: [started]
 jobs:
