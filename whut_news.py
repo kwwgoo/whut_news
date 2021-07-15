@@ -1,8 +1,8 @@
 import requests,re,os
 from bs4 import BeautifulSoup
 import datetime
-SKEY="4e29a141cecffbf0b0e1b73c9c839040" #Qmsg酱
-urlSKEY = "https://twikoo-3gos5ikbf8bca455-1304137385.ap-shanghai.app.tcloudbase.com/weixin/?id=ww25c38dc950aba839&secert=IKnzzfncxbXSpmW25tvhMBhfgUvZ8j5F70LaxRiePtc&agentId=1000004"
+SKEY="" #Qmsg酱
+urlSKEY = ""
 if "urlSKEY" in os.environ and os.environ["urlSKEY"]:
     urlSKEY = os.environ["urlSKEY"]
     print("选择企业bot推送")
@@ -71,14 +71,14 @@ def push(notion):
     if SKEY:
         url = "https://qmsg.zendee.cn/send/"+SKEY
         data = {
-                "msg":"⭕教务处又有新通知啦"+notion+"\n💂[源码地址](https://github.com/kwwgoo/whut_spider)"
+                "msg":"⭕教务处又有新通知啦"+notion+"\n💂[源码地址](https://github.com/kwwgoo/whut_news)"
                 }
         response = requests.post(url=url,data=data)
         if(response.status_code == 200):
             print("Qmsg酱送成功")
     if urlSKEY: 
         data = {
-                "msg":"⭕教务处又有新通知啦"+notion+"\n💂[源码地址](https://github.com/kwwgoo/whut_spider)"
+                "msg":"⭕教务处又有新通知啦"+notion+"\n💂[源码地址](https://github.com/kwwgoo/whut_news)"
                 }
         response = requests.get(urlSKEY,params=data)
         if(response.status_code == 200):
