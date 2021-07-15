@@ -63,9 +63,9 @@ def main():
     time, count_down = get_time()
     day_weather, day_temperature, day_wind = get_weather()
     jitang, translation, image_url = get_content()
-    count_down = '距离考研还有{}天，你准备好了吗？'.format(count_down) + "加油,相信你可以的"+'\n'
+    count_down = '距离考研还有{}天，你准备好了吗？'.format(count_down) + "加油,相信你可以的"+'\n\n'
     a = '下面为您播报武汉今日天气状况\n'
-    b = '每日一句，祝你心情美美哒\n'
+    b = '每日一句，祝你心情美美哒:\n'
     time = '今天是' + time
     weather = day_weather + day_temperature + day_wind
     content = jitang + translation

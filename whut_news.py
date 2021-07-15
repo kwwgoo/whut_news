@@ -64,7 +64,8 @@ if __name__ == "__main__":
     spider()
     soup(data)
     if(flag==1):
+        notion="⭕教务处又有新通知啦"+notions[0]+"\n💂[源码地址](https://github.com/kwwgoo/whut_news)"
         print("推送成功")
-        push(notions[0])
+        push(notion)
         
 

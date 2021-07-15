@@ -2,7 +2,7 @@ name: whut_spider
 
 on:
   schedule:
-    - cron: '20 22 * * *'
+    - cron: '35 22 * * *'
   watch:
     types: [started]
 jobs:

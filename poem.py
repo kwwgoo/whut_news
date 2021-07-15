@@ -10,10 +10,17 @@ def get_poem():
         "X-User-Token":"/PYtLTGL588sGuMcFlZX4nQaP5MfIwIB",
     }
     response = requests.get(url, headers=headers)
-    data = response.json()['origin']
+    data = response.json()['data']['origin']
     title = data['title']
     dynasty = data['dynasty']
     author = data['author']
-    content = data['content']
-    print("《"+title+"》" +'\n' +content)
+    contents = data['content']
+    text =    "《"+title+"》"+'\n'+"作者·"+dynasty+"·"+author+'\n'
+    #print("  《"+title+"》"+'\n'+"    作者·"+dynasty+"·"+author)
+    for content in contents:
+        text +=content+"\n" 
 
+    print(text)
+    push(text)
+    with open("./poem","ab",encoding("utf-8")) as f:
+        f.write(text)

@@ -15,14 +15,14 @@ def push(notion):
     if SKEY:
         url = "https://qmsg.zendee.cn/send/"+SKEY
         data = {
-                "msg":"⭕教务处又有新通知啦"+notion+"\n💂[源码地址](https://github.com/kwwgoo/whut_news)"
+                "msg":notion
                 }
         response = requests.post(url=url,data=data)
         if(response.status_code == 200):
             print("Qmsg酱送成功")
     if urlSKEY: 
         data = {
-                "msg":"⭕教务处又有新通知啦"+notion+"\n💂[源码地址](https://github.com/kwwgoo/whut_news)"
+                "msg":notion
                 }
         response = requests.get(urlSKEY,params=data)
         if(response.status_code == 200):
