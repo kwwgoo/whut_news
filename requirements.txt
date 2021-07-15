@@ -3,3 +3,4 @@ bs4
 lxml
 datetime
 pyttsx3
+fake_useragent
