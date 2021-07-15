@@ -1,16 +1,7 @@
 import requests,re,os
 from bs4 import BeautifulSoup
 import datetime
-SKEY="" #Qmsg酱
-urlSKEY = ""
-if "urlSKEY" in os.environ and os.environ["urlSKEY"]:
-    urlSKEY = os.environ["urlSKEY"]
-    print("选择企业bot推送")
-
-if "SKEY" in os.environ and os.environ["SKEY"]:
-    SKEY = os.environ["SKEY"]
-    print("选择Qmsg酱推送")
-
+from push import push
 #爬取的页面
 data = ""
 #推送内容
@@ -66,23 +57,6 @@ def soup(data):
                 
             
             
-#利用Qmsg酱推送到QQ上
-def push(notion):
-    if SKEY:
-        url = "https://qmsg.zendee.cn/send/"+SKEY
-        data = {
-                "msg":"⭕教务处又有新通知啦"+notion+"\n💂[源码地址](https://github.com/kwwgoo/whut_news)"
-                }
-        response = requests.post(url=url,data=data)
-        if(response.status_code == 200):
-            print("Qmsg酱送成功")
-    if urlSKEY: 
-        data = {
-                "msg":"⭕教务处又有新通知啦"+notion+"\n💂[源码地址](https://github.com/kwwgoo/whut_news)"
-                }
-        response = requests.get(urlSKEY,params=data)
-        if(response.status_code == 200):
-            print("企业机器人推送成功")
 
 
 #推送最新一条公告
@@ -90,5 +64,7 @@ if __name__ == "__main__":
     spider()
     soup(data)
     if(flag==1):
+        print("推送成功")
         push(notions[0])
+        
 

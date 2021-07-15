@@ -1,0 +1,26 @@
+name: whut_spider
+
+on:
+  schedule:
+    - cron: '00 22 * * *'
+  watch:
+    types: [started]
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        
+      - name: 'Set up Python'
+        uses: actions/setup-python@v1
+        with:
+          python-version: 3.7
+         
+      - name: 'Install requirements'
+        run: pip install -r ./requirements.txt 
+        
+      - name: '每日播报考研倒计时、天气情况、还有“营养鸡汤”' 
+        run: python3 whether.py 
+        env:
+          
