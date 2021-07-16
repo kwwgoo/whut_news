@@ -3,7 +3,10 @@ from lxml import etree
 import json
 import pyttsx3
 import datetime
-from push import push
+import urllib
+from urllib import request
+import sys
+import ssl
 
 # 获取日期和倒计时
 def get_time():
@@ -11,9 +14,9 @@ def get_time():
     y = str(a.year)
     m = str(a.month)
     d = str(a.day)  # 转换为字符串，便于打印
-    time = y + '年' + m + '月' + d + '日' + '\n'
-    b = datetime.datetime(2021, 12, 25)  # 自己设置的高考时间
-    count_down = (b - a).days  # 高考倒计时
+    time = y + '年' + m + '月' + d + '日' 
+    b = datetime.datetime(2021, 12, 25)  # 自己设置的考研时间
+    count_down = (b - a).days  # k考研倒计时
     return time, count_down
 
 
@@ -58,23 +61,31 @@ def get_content():
     image_url = json_s.get("fenxiang_img")  # 图片链接
     return jitang, translation, image_url
 
+def get_yunshi():
+    host = 'https://ali-star-lucky.showapi.com'
+    path = '/star'
+    method = 'GET'
+    appcode = '9adef75c01f144baaf5e168411b62745'
+    querys = 'needMonth=0&needTomorrow=0&needWeek=0&needYear=0&star=tianxie'
+    bodys = {}
+    url = host + path + '?' + querys
 
-def main():
-    time, count_down = get_time()
-    day_weather, day_temperature, day_wind = get_weather()
-    jitang, translation, image_url = get_content()
-    count_down = '距离考研还有{}天，你准备好了吗？'.format(count_down) + "加油,相信你可以的"+'\n\n'
-    a = '下面为您播报武汉今日天气状况\n'
-    b = '每日一句，祝你心情美美哒:\n'
-    time = '今天是' + time
-    weather = day_weather + day_temperature + day_wind
-    content = jitang + translation
-    text = time + count_down + a + weather + b + content  # 语音内容
-    print(text)
-    with open("./notes.txt",'ab',encoding="utf-8) as f:
-        f.write(text)
-    push(text)
-
-
-if __name__ == "__main__":
-    main()
+    request = urllib.request.Request(url)
+    request.add_header('Authorization', 'APPCODE ' + appcode)
+    ctx = ssl.create_default_context()
+    ctx.check_hostname = False
+    ctx.verify_mode = ssl.CERT_NONE
+    response = urllib.request.urlopen(request, context=ctx)
+    content = response.read()
+    data = json.loads(content)
+    print(type(data))
+    data = data['showapi_res_body']['day']
+    luckytext =  "幸运时间:"+data['lucky_time']+",幸运颜色:"+data['lucky_color']+",幸运数字:"+data['lucky_num']
+    print(luckytext)
+    love_txt = "爱情运势"+data['love_txt']
+    money_txt = "财富运势"+data['money_txt']
+    work_txt = "学习运势"+data['work_txt']
+    general_txt = "运势简评"+data['general_txt']
+    day_notice = "今日提醒"+data['day_notice']
+    content = general_txt+"\n"+love_txt +"\n"+money_txt+"\n"+day_notice
+    print(content)

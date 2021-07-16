@@ -1,8 +1,8 @@
-name: poenm
+name: 考研倒计时推送
 
 on:
   schedule:
-    - cron: '35 20 * * *'
+    - cron: '00 8 * * *'
   watch:
     types: [started]
 jobs:
@@ -20,14 +20,14 @@ jobs:
       - name: 'Install requirements'
         run: pip install -r ./requirements.txt 
         
-      - name: 推送诗词 
-        run: python3 poem.py 
+      - name: '每日播报考研倒计时、天气情况、还有营养鸡汤' 
+        run: python3 ./src/kaoyan.py
         env:
             SKEY: ${{ secrets.SKEY }}     #Qmsg通知
             #XMLY_SPEED_COOKIE: ${{ secrets.XMLY_SPEED_COOKIE }}  #必须
             # XMLY_ACCUMULATE_TIME: ${{ secrets.XMLY_ACCUMULATE_TIME }} #非私密信息，去掉
             #BARK: ${{ secrets.BARK }}     # bark服务
             urlSKEY: ${{ secrets.urlSKEY }}   # 企业机器人酱服务
-            boturl: ${{ secrets.boturl}}
             #TG_BOT_TOKEN: ${{secrets.TG_BOT_TOKEN}} # tg通知token
             #TG_USER_ID:  ${{secrets.TG_USER_ID}}    # tg通知id
+            boturl: ${{ secrets.boturl}}

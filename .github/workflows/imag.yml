@@ -1,8 +1,8 @@
-name: whether
+name: 推送每日一句图
 
 on:
   schedule:
-    - cron: '20 22 * * *'
+    - cron: '00 12 * * *'
   watch:
     types: [started]
 jobs:
@@ -21,7 +21,7 @@ jobs:
         run: pip install -r ./requirements.txt 
         
       - name: '每日播报考研倒计时、天气情况、还有营养鸡汤' 
-        run: python3 whether.py 
+        run: python3 ./src/img.py
         env:
             SKEY: ${{ secrets.SKEY }}     #Qmsg通知
             #XMLY_SPEED_COOKIE: ${{ secrets.XMLY_SPEED_COOKIE }}  #必须
@@ -30,3 +30,4 @@ jobs:
             urlSKEY: ${{ secrets.urlSKEY }}   # 企业机器人酱服务
             #TG_BOT_TOKEN: ${{secrets.TG_BOT_TOKEN}} # tg通知token
             #TG_USER_ID:  ${{secrets.TG_USER_ID}}    # tg通知id
+            boturl: ${{ secrets.boturl}}
