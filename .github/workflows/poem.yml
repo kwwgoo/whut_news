@@ -1,8 +1,8 @@
-name: poem
+name: poenm
 
 on:
   schedule:
-    - cron: '30 6 * * *'
+    - cron: '35 22 * * *'
   watch:
     types: [started]
 jobs:
@@ -20,7 +20,7 @@ jobs:
       - name: 'Install requirements'
         run: pip install -r ./requirements.txt 
         
-      - name: 诗词推送 
+      - name: 推送诗词 
         run: python3 poem.py 
         env:
             SKEY: ${{ secrets.SKEY }}     #Qmsg通知

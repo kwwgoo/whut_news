@@ -71,7 +71,7 @@ def main():
     content = jitang + translation
     text = time + count_down + a + weather + b + content  # 语音内容
     print(text)
-    with open("./notes.txt",'w') as f:
+    with open("./notes.txt",'ab',encoding="utf-8) as f:
         f.write(text)
     push(text)
 

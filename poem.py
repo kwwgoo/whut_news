@@ -1,6 +1,7 @@
 import requests
 import json
 from fake_useragent import UserAgent
+from push import push
 poems = ""
 def get_poem():
     global data
@@ -22,5 +23,9 @@ def get_poem():
 
     print(text)
     push(text)
-    with open("./poem","ab",encoding("utf-8")) as f:
+    with open("./poem.txt","a") as f:
         f.write(text)
+
+
+if __name__ == "__main__":
+    get_poem()
