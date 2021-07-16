@@ -11,7 +11,6 @@ jitang, translation, image_url = get_content()
 content = jitang+translation
 day_weather, day_temperature, day_wind = get_weather()
 weather = day_weather + day_temperature + day_wind
-url = 'https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=56902235-478e-4fe4-8cab-a64e5776b81f'
 headers = {
     "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36",
     "Content-Type": "application/json",

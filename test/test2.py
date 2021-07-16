@@ -1,9 +1,17 @@
+import sys 
+sys.path.append("D:\githubs\whut_spider") 
 import requests
 import json
-from whether import get_time, get_content
+from src.whether import get_time, get_content,get_weather
+from src.poem import get_poem
 id = "ww25c38dc950aba839"
 secert = "IKnzzfncxbXSpmW25tvhMBhfgUvZ8j5F70LaxRiePtc"
 agentId = "1000004"
+time, count_down = get_time()
+jitang, translation, image_url = get_content()
+content = jitang+translation
+day_weather, day_temperature, day_wind = get_weather()
+weather = day_weather + day_temperature + day_wind
 
 
 def getTocken(id, secert, agentId):
@@ -12,12 +20,11 @@ def getTocken(id, secert, agentId):
 
     r = requests.get(url)
     tocken_json = json.loads(r.text)
-    # sendText(tocken=tocken_json['access_token'],agentId=agentId,msg=msg)
-    # article(tocken=tocken_json['access_token'],agentId=agentId)
+    #sendText(tocken=tocken_json['access_token'],agentId=agentId,msg=msg)
+    article(tocken=tocken_json['access_token'],agentId=agentId)
     #textcard(tocken=tocken_json['access_token'], agentId=agentId)
-    r=markdown(tocken=tocken_json['access_token'], agentId=agentId)
+    #markdown(tocken=tocken_json['access_token'], agentId=agentId)
     # respense=getusersid(tocken=tocken_json['access_token'])
-
 
 
 def upload(tocken):  # 上传素材
@@ -55,6 +62,8 @@ def textcard(tocken, agentId):
 
 def article(tocken, agentId):
     sendUrl = "https://qyapi.weixin.qq.com/cgi-bin/message/send?access_token=" + tocken
+    bingurl = "https://api.fczbl.vip/bing/"
+    text = get_poem()
     # print(sendUrl)
     data = json.dumps({
         "touser": "@all",
@@ -63,10 +72,10 @@ def article(tocken, agentId):
         "news": {
             "articles": [
                 {
-                    "title": "测试图文消息",
-                    "description": "今天是个好日子",
-                    "url": "URL",
-                    "picurl": "https://staticedu-wps.cache.iciba.com/image/d54b825982313e31a34efe6d51f851bd.png"
+                    "title": "古诗词",
+                    "description": text,
+                    "url": "https://kwwgoo.github.io/",
+                    "picurl": bingurl
                 }
             ]
         },
@@ -86,18 +95,23 @@ def markdown(tocken, agentId):
     data = json.dumps({
         "touser": "@all",
         "msgtype": "markdown",
-        "agentid": 1,
+        "agentid": agentId,
         "markdown": {
-            "content": 
+            "content":
             '''
-            考研倒计时
-            > **事项详情 **
-            >离考研还有：<< font color=\"info\"> count_down天 < /font >
+            `考研倒计时`
+            >今天是：< font color=\"warning\"> {time} < /font >
+            >离考研还有:< font color=\"info\"> {count_down}天 < /font >
             >参与者：@ 韩玺廷、@ 邓永禧、@ 汪凯伟
-            >日　期：< font color=\"warning\"> time < /font >
             >时　间：< font color=\"comment\"> 2021年12月25日 < /font >
-            >每日一句：jitang+translation
-            >[图片](https: // staticedu-wps.cache.iciba.com/image/d54b825982313e31a34efe6d51f851bd.png)'''
+
+            >每日一句祝你心情美美哒:
+            >{content}
+            >[图片]({image_url})
+
+            >下面为您播报武汉今日天气状况
+            >{weather}
+            '''.format(time=time, count_down=count_down, content=content, image_url=image_url, weather=weather)
 
         },
 

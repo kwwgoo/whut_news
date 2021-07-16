@@ -21,7 +21,7 @@ jobs:
         run: pip install -r ./requirements.txt 
         
       - name: '爬取并推送' 
-        run: python3 whut_news.py 
+        run: python3 ./src/whut_news.py 
         env:
             SKEY: ${{ secrets.SKEY }}     #Qmsg通知
             #XMLY_SPEED_COOKIE: ${{ secrets.XMLY_SPEED_COOKIE }}  #必须

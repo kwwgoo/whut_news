@@ -20,7 +20,7 @@ jobs:
       - name: 'Install requirements'
         run: pip install -r ./requirements.txt 
         
-      - name: '每日播报考研倒计时、天气情况、还有营养鸡汤' 
+      - name: '图文消息' 
         run: python3 ./src/img.py
         env:
             SKEY: ${{ secrets.SKEY }}     #Qmsg通知
