@@ -2,7 +2,7 @@ name: 今日运势推送
 
 on:
   schedule:
-    - cron: '30 21 * * *'
+    - cron: '30 06 * * *'
   watch:
     types: [started]
 jobs:

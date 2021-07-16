@@ -2,7 +2,7 @@ name: 古诗词推送
 
 on:
   schedule:
-    - cron: '35 20 * * *'
+    - cron: '00 21 * * *'
   watch:
     types: [started]
 jobs:
