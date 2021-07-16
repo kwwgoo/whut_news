@@ -1,7 +1,7 @@
 import requests
 import json
 from fake_useragent import UserAgent
-from src.push import push
+from push import push
 
 
 def get_poem():
