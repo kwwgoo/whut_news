@@ -4,4 +4,4 @@ lxml
 datetime
 pyttsx3
 fake_useragent
-PIL
+Pillow

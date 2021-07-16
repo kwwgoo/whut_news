@@ -3,7 +3,6 @@ import json
 from whether import get_time, get_content, get_weather
 import hashlib,base64
 from urllib import request
-from PIL import Image
 from poem import get_poem
 from push import boturl
 time, count_down = get_time()

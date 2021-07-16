@@ -3,7 +3,6 @@ import json
 from whether import get_content
 import hashlib,base64
 from urllib import request
-from PIL import Image
 from push import boturl
 
 jitang, translation, image_url = get_content()

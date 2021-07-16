@@ -2,7 +2,7 @@ import requests
 from push import push
 import json
 from urllib import request
-from PIL import Image
+
 
 def get_content():
     url = 'http://open.iciba.com/dsapi/'  # 网上找的API
