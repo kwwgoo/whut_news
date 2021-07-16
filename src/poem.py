@@ -1,7 +1,7 @@
 import requests
 import json
 from fake_useragent import UserAgent
-from push import push
+from push import botpush
 
 
 def get_poem():
@@ -46,6 +46,5 @@ if __name__ == "__main__":
             ]
         }
     })
-    response.status_code=boturl(headers, data)
-    if(response.status_code == 200):
-        print("古诗词推送成功")
+    botpush(data)
+    print("古诗词推送成功")

@@ -3,7 +3,7 @@ import json
 from whether import get_content
 import hashlib,base64
 from urllib import request
-from push import boturl
+from push import botpush
 
 jitang, translation, image_url = get_content()
 name = '每日一句.'+"jpg"
@@ -24,7 +24,6 @@ data = json.dumps({
         "md5": MD5,
     }
 })
-response_code = boturl(headers, data)
-if (response_code == 200):
-    print(每日一句图片推送成功)
+botpush(data)
+print(每日一句图片推送成功)
 

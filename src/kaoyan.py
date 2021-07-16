@@ -1,10 +1,12 @@
 import requests
 import json
 from whether import get_time, get_content, get_weather
-import hashlib,base64
+import hashlib
+import base64
 from urllib import request
 from poem import get_poem
-from push import boturl
+from push import botpush
+
 time, count_down = get_time()
 jitang, translation, image_url = get_content()
 content = jitang+translation
@@ -31,11 +33,9 @@ data = json.dumps({
 
             >下面为您播报武汉今日天气状况
             >{weather}
-            '''.format(time=time, count_down=count_down, content=content,image_url=image_url, weather=weather)
+            '''.format(time=time, count_down=count_down, content=content, image_url=image_url, weather=weather)
 
     }
 })
-response_code = boturl(headers, data)
-if (response_code == 200):
-    print("考研提醒推送成功")
-
+botpush(data)
+print("考研提醒推送成功")
