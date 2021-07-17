@@ -1,9 +1,9 @@
-import sys 
-sys.path.append("D:\githubs\whut_spider") 
-import requests
-import json
-from src.whether import get_time, get_content,get_weather
+from src.whether import get_time, get_content, get_weather
 from src.poem import get_poem
+import json
+import requests
+import sys
+sys.path.append("D:\githubs\whut_spider")
 id = "ww25c38dc950aba839"
 secert = "IKnzzfncxbXSpmW25tvhMBhfgUvZ8j5F70LaxRiePtc"
 agentId = "1000004"
@@ -14,17 +14,22 @@ day_weather, day_temperature, day_wind = get_weather()
 weather = day_weather + day_temperature + day_wind
 
 
-def getTocken(id, secert, agentId):
-    url = "https://qyapi.weixin.qq.com/cgi-bin/gettoken?corpid=" + \
-        id + "&corpsecret=" + secert
-
+def getTocken(id, secert, agentId,kind):
+    url = "https://qyapi.weixin.qq.com/cgi-bin/gettoken?corpid=" + id + "&corpsecret=" + secert
     r = requests.get(url)
     tocken_json = json.loads(r.text)
-    #sendText(tocken=tocken_json['access_token'],agentId=agentId,msg=msg)
-    article(tocken=tocken_json['access_token'],agentId=agentId)
-    #textcard(tocken=tocken_json['access_token'], agentId=agentId)
-    #markdown(tocken=tocken_json['access_token'], agentId=agentId)
-    # respense=getusersid(tocken=tocken_json['access_token'])
+    if(kind == 1):  # 文本消息
+        response = sendText(
+            tocken=tocken_json['access_token'], agentId=agentId, msg=msg)
+    elif(kind == 2):  # 图文消息
+        response = article(tocken=tocken_json['access_token'], agentId=agentId)
+    elif(kind == 3):  # 文本卡片消息
+        response = textcard(
+            tocken=tocken_json['access_token'], agentId=agentId)
+    elif(kind == 4):  # markdown消息
+        response = markdown(
+            tocken=tocken_json['access_token'], agentId=agentId)
+    return response.status_code
 
 
 def upload(tocken):  # 上传素材
@@ -128,4 +133,4 @@ def getusersid(tocken):
 
 
 if __name__ == "__main__":
-    getTocken(id, secert, agentId)
+    getTocken(id, secert, agentId,2)

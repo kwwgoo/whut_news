@@ -5,7 +5,7 @@ import hashlib
 import base64
 from urllib import request
 from poem import get_poem
-from push import botpush
+from push import botpush, weipush
 
 time, count_down = get_time()
 jitang, translation, image_url = get_content()
@@ -38,4 +38,5 @@ data = json.dumps({
     }
 })
 botpush(data)
+weipush(data)
 print("考研提醒推送成功")

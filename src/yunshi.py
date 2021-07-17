@@ -5,7 +5,7 @@ import sys
 import ssl
 import json
 import requests
-from push import botpush
+from push import botpush,weipush
 
 host = 'https://ali-star-lucky.showapi.com'
 path = '/star'
@@ -52,5 +52,5 @@ data = json.dumps({
         ]
     }
 })
-botpush(data)
+weipush(data)
 print("今日运势推送成功")
