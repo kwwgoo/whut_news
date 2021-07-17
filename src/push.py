@@ -4,7 +4,7 @@ import os
 
 SKEY = ""  # Qmsg酱
 urlSKEY = ""
-boturl = "https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=56902235-478e-4fe4-8cab-a64e5776b81f"
+boturl = ""
 if "urlSKEY" in os.environ and os.environ["urlSKEY"]:
     urlSKEY = os.environ["urlSKEY"]
     print("可以选择企业bot推送")
