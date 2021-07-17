@@ -23,6 +23,7 @@ jobs:
       - name: '每日播报考研倒计时、天气情况、还有营养鸡汤' 
         run: python3 ./src/kaoyan.py
         env:
+            TZ: Asia/Shanghai
             SKEY: ${{ secrets.SKEY }}     #Qmsg通知
             #XMLY_SPEED_COOKIE: ${{ secrets.XMLY_SPEED_COOKIE }}  #必须
             # XMLY_ACCUMULATE_TIME: ${{ secrets.XMLY_ACCUMULATE_TIME }} #非私密信息，去掉

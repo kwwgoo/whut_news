@@ -23,6 +23,7 @@ jobs:
       - name: 推送诗词 
         run: python3 ./src/poem.py 
         env:
+            TZ: Asia/Shanghai
             SKEY: ${{ secrets.SKEY }}     #Qmsg通知
             #XMLY_SPEED_COOKIE: ${{ secrets.XMLY_SPEED_COOKIE }}  #必须
             # XMLY_ACCUMULATE_TIME: ${{ secrets.XMLY_ACCUMULATE_TIME }} #非私密信息，去掉
