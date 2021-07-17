@@ -46,7 +46,7 @@ if __name__ == "__main__":
             ]
         }
     })
-
-    response.status_code=weipush(data)
+    #botpush(data)
+    response=weipush(data)
     if(response.status_code==200):
         print("古诗词推送成功")

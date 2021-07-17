@@ -25,5 +25,5 @@ data = json.dumps({
     }
 })
 botpush(data)
-print(每日一句图片推送成功)
+print("每日一句图片推送成功")
 

@@ -42,19 +42,23 @@ def weipush(data,id=id,secert=secert,agentID=agentId):
     url = "https://qyapi.weixin.qq.com/cgi-bin/gettoken?corpid=" + id + "&corpsecret=" + secert
     r = requests.get(url)
     tocken_json = json.loads(r.text)
-    response=sendText(tocken=tocken_json['access_token'],agentId=agentId,data=data)
+    response = sendText(tocken=tocken_json['access_token'],agentId=agentId,data=data)
     if(response.status_code==200):
         print("企业应用机器人推送成功")
-    return response.status_code
+    return response
 
 def botpush(data):
     if boturl:
         response = requests.post(boturl,data=data)
-    if (response.status_code == 200):
+    if(response.status_code == 200):
         print("群组消息推送成功")
-    return response.status_code
+    return response
 
 def sendText(tocken,agentId,data):
+    data = json.loads(data)
+    data['agentid'] = agentId
+    data['touser'] = "@all"
+    data = json.dumps(data)
     sendUrl = "https://qyapi.weixin.qq.com/cgi-bin/message/send?access_token=" + tocken
-    respoense=requests.post(sendUrl,data)
-    return respoense
+    response=requests.post(sendUrl,data)
+    return response
