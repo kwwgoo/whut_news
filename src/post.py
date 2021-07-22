@@ -2,12 +2,14 @@
 import requests
 import json
 from push import weipush
+cookies = ""
+cookies = os.environ["cookies"]
 a = ""
 url = "https://zhxg.whut.edu.cn/yqtjwx/monitorRegister"
 headers = {"Connection": "keep-alive",
            "X-Tag": "flyio",
            "content-type": "application/json",
-           "Cookie": "JSESSIONID=896e9434-18b0-422d-8eb9-97cffb20c363",
+           "Cookie": "JSESSIONID=cookie".format(cookies=cookies),
            "User-Agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 15_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 MicroMessenger/8.0.9(0x18000924) NetType/WIFI Language/zh_CN",
            "Referer": "https://servicewechat.com/wxa0738e54aae84423/11/page-frame.html",
            }
