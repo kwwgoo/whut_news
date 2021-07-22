@@ -1,15 +1,17 @@
 # 体温上报小程序
 import requests
 import json
+import os
 from push import weipush
-cookies = ""
-cookies = os.environ["cookies"]
+cookies = "5075543f-e115-49e0-b836-aeffc1ae8b5b"
+if "cookies" in os.environ and os.environ["cookies"]:
+    cookies = os.environ["cookies"]
 a = ""
 url = "https://zhxg.whut.edu.cn/yqtjwx/monitorRegister"
 headers = {"Connection": "keep-alive",
            "X-Tag": "flyio",
            "content-type": "application/json",
-           "Cookie": "JSESSIONID=cookie".format(cookies=cookies),
+           "Cookie": "JSESSIONID=cookies".format(cookies=cookies),
            "User-Agent": "Mozilla/5.0 (iPhone; CPU iPhone OS 15_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Mobile/15E148 MicroMessenger/8.0.9(0x18000924) NetType/WIFI Language/zh_CN",
            "Referer": "https://servicewechat.com/wxa0738e54aae84423/11/page-frame.html",
            }
