@@ -68,3 +68,5 @@ if __name__ == "__main__":
 
         print("推送成功")
         weipush(data)
+        Qsmgpush(notion)
+
