@@ -8,7 +8,7 @@ def get_poem():
     global data
     url = 'https://v2.jinrishici.com/sentence'
     headers = {
-        "user-agent": str(UserAgent().random),
+        "user-agent":"Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36",
         "X-User-Token": "/PYtLTGL588sGuMcFlZX4nQaP5MfIwIB",
     }
     response = requests.get(url, headers=headers)
@@ -29,7 +29,10 @@ def get_poem():
 if __name__ == "__main__":
     text = get_poem()
     url = 'https://qyapi.weixin.qq.com/cgi-bin/webhook/send?key=56902235-478e-4fe4-8cab-a64e5776b81f'
-    bingurl = "https://api.fczbl.vip/bing/"
+
+    bingurl = "https://cn.bing.com/HPImageArchive.aspx?format=js&idx=0&n=1"
+    bingurl  = requests.get(bingurl).json()
+    bingurl = "http://s.cn.bing.net"+bingurl['images'][0]['url']
     headers = {
         "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36",
         "Content-Type": "application/json", }
