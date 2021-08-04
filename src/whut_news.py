@@ -4,6 +4,7 @@ import os
 from bs4 import BeautifulSoup
 import datetime
 from push import weipush
+import json
 # 爬取的页面
 data = ""
 # 推送内容
@@ -61,12 +62,13 @@ if __name__ == "__main__":
     if(flag == 1):
         notion = "⭕教务处又有新通知啦" + \
             notions[0]+"\n💂[源码地址](https://github.com/kwwgoo/whut_news)"
-        data2 = json.dumps({
+        data = json.dumps({
             "msgtype": "text",
-            "text": {notion}
+            "text": {
+                "content": notion
+            }
         })
 
         print("推送成功")
         weipush(data)
         Qsmgpush(notion)
-
